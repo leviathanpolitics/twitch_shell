@@ -1,5 +1,5 @@
 from cmd import Cmd
-from twitchapi import TwitchApi
+from twitchcmd import TwitchCalls
 
 class Prompts(Cmd):
 
@@ -8,7 +8,15 @@ class Prompts(Cmd):
 		self.prompt = '> '
 		self.intro = 'welcome'
 
+	def do_user_stat(self, user='ktimekiller'):
+		"""shows a users stat. defaults to me"""
+		response = TwitchCalls()
+		print response.get_user_stat(user)
 
+	def do_my_online_follows(self, args):
+		"""shows my online follows"""
+		response = TwitchCalls()
+		print response.get_my_online_follows()
 
 	def do_exit(self, args):
 		"""exits"""

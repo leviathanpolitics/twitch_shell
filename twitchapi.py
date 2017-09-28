@@ -51,6 +51,3 @@ class TwitchAPI(object):
 		response.raise_for_status()
 		if response.status_code == 200:
 			return response.json()
-
-#result = TwitchAPI()
-#print result._request_get('users?login=ktimekiller')
