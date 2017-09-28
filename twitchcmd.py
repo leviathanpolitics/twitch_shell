@@ -48,6 +48,3 @@ class TwitchCalls(TwitchAPI):
 		follows_ids = list(map(lambda x: x['to_id'], follows_list))
 		user = self._userid_to_usernames(follows_ids)
 		return user
-
-#response = TwitchCalls()
-#print response.get_my_online_follows()

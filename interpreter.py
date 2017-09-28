@@ -8,15 +8,20 @@ class Prompts(Cmd):
 		self.prompt = '> '
 		self.intro = 'welcome'
 
-	def do_user_stat(self, user='ktimekiller'):
-		"""shows a users stat. defaults to me"""
+	def do_user_stat(self, user):
+		"""shows a users stat."""
 		response = TwitchCalls()
-		print response.get_user_stat(user)
+		result = response.get_user_stat(user)
+		for user_dict in result:
+			for stat_key in user_dict:
+				print stat_key + ': ' + str(user_dict[stat_key]) + '\n'
 
 	def do_my_online_follows(self, args):
 		"""shows my online follows"""
 		response = TwitchCalls()
-		print response.get_my_online_follows()
+		result = response.get_my_online_follows()
+		for user in result:
+			print user + '\n'
 
 	def do_exit(self, args):
 		"""exits"""
