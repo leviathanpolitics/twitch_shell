@@ -15,7 +15,7 @@ class TwitchCalls(TwitchAPI):
 
 		return user_id
 
-	def _userid_to_usernames(self, users):
+	def _userid_to_username(self, users):
 		try:
 			users_parsed = ''
 			for x in users:
@@ -34,6 +34,8 @@ class TwitchCalls(TwitchAPI):
 
 		return usernames
 
+	def _game_name_to_game_id(self, ):
+
 	def get_user_stat(self, user):
 		response = self.response('kraken/users?login=%s' % user)
 
@@ -41,10 +43,22 @@ class TwitchCalls(TwitchAPI):
 
 		return user
 
+	def get_streams(self, usernames=None, games=None):
+		if usernames:
+			usernames_parsed = ''
+			for username in usernames:
+				usernames_parsed = usernames_parsed + '&user_login=' + username
+		if games:
+			games_parsed = ''
+			for game in games:
+				games_parsed = games_parsed + '&game_id'
+		response = self.response('helix/streams?first=20%s%s' % usernames % games)
+
+
 	def get_my_online_follows(self):
 		response = self.response('helix/users/follows?from_id= %s' % self.user_id)
 
 		follows_list = response['data']
 		follows_ids = list(map(lambda x: x['to_id'], follows_list))
-		user = self._userid_to_usernames(follows_ids)
+		user = self._userid_to_username(follows_ids)
 		return user

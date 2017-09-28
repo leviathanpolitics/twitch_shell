@@ -9,7 +9,7 @@ class Prompts(Cmd):
 		self.intro = 'welcome'
 
 	def do_user_stat(self, user):
-		"""shows a users stat."""
+		"""shows a user's stat."""
 		response = TwitchCalls()
 		result = response.get_user_stat(user)
 		for user_dict in result:
